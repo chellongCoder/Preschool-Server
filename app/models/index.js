@@ -1,0 +1,1 @@
+module.exports = (name, version) => new (require(`./${name}_model`))(version);
