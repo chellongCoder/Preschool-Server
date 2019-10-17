@@ -1,5 +1,5 @@
 const BaseModel = require('../base/base_model');
-const TABLE = 'image';
+const TABLE = 'images';
 class ImageModel extends BaseModel {
 
     constructor(version) {

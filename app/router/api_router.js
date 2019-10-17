@@ -1,5 +1,5 @@
 const BaseRouter = require('./base_router');
-const { ApiCtrl, AuthCtrl, MomentCtrl, ParentCtrl, ImageCtrl} = require('../controllers');
+const { ApiCtrl, AuthCtrl, MomentCtrl, ParentCtrl, ImageCtrl, TeacherCtrl, StudentCtrl} = require('../controllers');
 const ApiVerify = require('../middleware/api_verify');
 
 class ApiRouter extends BaseRouter{
@@ -12,6 +12,8 @@ class ApiRouter extends BaseRouter{
         const momentCtrl = new MomentCtrl();
         const parentCtrl = new ParentCtrl();
         const imageCtrl = new ImageCtrl();
+        const teacherCtrl = new TeacherCtrl();
+        const studentCtrl = new StudentCtrl();
         //Api Auth
         this.addRouter('POST', '/user/register', authCtrl.register.bind(authCtrl));
         this.addRouter('POST', '/user/login', authCtrl.login.bind(authCtrl));
@@ -24,6 +26,8 @@ class ApiRouter extends BaseRouter{
         this.routerCtrl(momentCtrl, "moments");
         this.routerCtrl(parentCtrl, "parent");
         this.routerCtrl(imageCtrl, "image");
+        this.routerCtrl(teacherCtrl, "teacher");
+        this.routerCtrl(studentCtrl, "student");
     }
 
     

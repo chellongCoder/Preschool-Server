@@ -12,7 +12,7 @@ class DBConnector {
         port: 3336,
         user: 'root',
         password: 'toor',
-        database: 'preschool_system'//ver == 1 ? 'braindb' : 'braindb-v2'
+        database: 'preSchool_app'//ver == 1 ? 'braindb' : 'braindb-v2'
       }
     }
 

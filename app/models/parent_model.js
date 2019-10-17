@@ -1,5 +1,5 @@
 const BaseModel = require('../base/base_model');
-const TABLE = 'parent';
+const TABLE = 'parents';
 class ParentModel extends BaseModel {
 
     constructor(version) {

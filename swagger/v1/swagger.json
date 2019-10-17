@@ -100,46 +100,12 @@
                         "type": "string"
                     },
                     {
-                        "name": "is_boss",
+                        "name": "role",
                         "in": "formData",
-                        "description": "kiểm tra quyền xem user có phải là boss không",
-                        "required": false,
-                        "type": "int"
-                    },
-                    {
-                        "name": "is_admin",
-                        "in": "formData",
-                        "description": "kiểm tra quyền xem user có phải là admin không",
-                        "required": false,
-                        "type": "int"
-                    },
-                    {
-                        "name": "is_teacher",
-                        "in": "formData",
-                        "description": "kiểm tra quyền xem user có phải là teacher không",
-                        "required": false,
-                        "type": "int"
-                    },
-                    {
-                        "name": "is_student",
-                        "in": "formData",
-                        "description": "kiểm tra quyền xem user có phải là student không",
-                        "required": false,
-                        "type": "int"
-                    },
-                    {
-                        "name": "is_parent",
-                        "in": "formData",
-                        "description": "kiểm tra quyền xem user có phải là parent không",
-                        "required": false,
-                        "type": "int"
-                    },
-                    {
-                        "name": "id_grant",
-                        "in": "formData",
-                        "description": "id mapping đến id các loại người dùng",
+                        "description": "role 10, 11, 12, 13",
                         "required": true,
-                        "type": "int"
+                        "type": "integer",
+                        "format": "int32"
                     }
                 ],
                 "responses": {
@@ -285,14 +251,6 @@
                 ],
                 "parameters": [
                     {
-                        "name": "id",
-                        "in": "formData",
-                        "description": "moment id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    {
                         "name": "content",
                         "in": "formData",
                         "description": "Nội dung của moment",
@@ -308,17 +266,25 @@
                         "format": "int32"
                     },
                     {
-                        "name": "like_status",
+                        "name": "likes",
                         "in": "formData",
-                        "description": "like status",
+                        "description": "like number",
                         "required": false,
                         "type": "integer",
                         "format": "int32"
                     },
                     {
-                        "name": "author",
+                        "name": "author_id",
                         "in": "formData",
                         "description": "Teacher id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "status_accept",
+                        "in": "formData",
+                        "description": "0 or 1",
                         "required": true,
                         "type": "integer",
                         "format": "int32"
@@ -385,14 +351,7 @@
                 "produces": [
                     "application/json"
                 ],
-                "parameters": [{
-                        "name": "id",
-                        "in": "path",
-                        "description": "moment id",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int32"
-                    },
+                "parameters": [
                     {
                         "name": "content",
                         "in": "formData",
@@ -409,17 +368,25 @@
                         "format": "int32"
                     },
                     {
-                        "name": "like_status",
+                        "name": "likes",
                         "in": "formData",
-                        "description": "like status",
+                        "description": "like number",
                         "required": false,
                         "type": "integer",
                         "format": "int32"
                     },
                     {
-                        "name": "author",
+                        "name": "author_id",
                         "in": "formData",
                         "description": "Teacher id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "status_accept",
+                        "in": "formData",
+                        "description": "0 or 1",
                         "required": true,
                         "type": "integer",
                         "format": "int32"
@@ -521,14 +488,6 @@
                 ],
                 "parameters": [
                     {
-                        "name": "id",
-                        "in": "formData",
-                        "description": "id parent ",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    {
                         "name": "last_name",
                         "in": "formData",
                         "description": "parent last name",
@@ -575,7 +534,7 @@
                         "in": "formData",
                         "description": "Liên hệ tin cậy",
                         "required": false,
-                        "type": "integer"
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -646,39 +605,31 @@
                 ],
                 "parameters": [
                     {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id parent ",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    {
                         "name": "last_name",
                         "in": "formData",
                         "description": "parent last name",
-                        "required": false,
+                        "required": true,
                         "type": "string"
                     },
                     {
                         "name": "first_name",
                         "in": "formData",
                         "description": "parent first name",
-                        "required": false,
+                        "required": true,
                         "type": "string"
                     },
                     {
                         "name": "phone",
                         "in": "formData",
                         "description": "number phone of parent",
-                        "required": false,
+                        "required": true,
                         "type": "string"
                     },
                     {
                         "name": "relationship",
                         "in": "formData",
                         "description": "Mô tả về quan hệ",
-                        "required": false,
+                        "required": true,
                         "type": "string"
                     },
                     {
@@ -700,21 +651,7 @@
                         "in": "formData",
                         "description": "Liên hệ tin cậy",
                         "required": false,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "updated_at",
-                        "in": "formData",
-                        "description": "YYYY-MM-Đ hh:mm:ss",
-                        "required": false,
                         "type": "string"
-                    },
-                    {
-                        "name": "is_delete",
-                        "in": "formData",
-                        "description": "đã xoá hay chưa",
-                        "required": false,
-                        "type": "integer"
                     }
                 ],
                 "responses": {
@@ -774,78 +711,6 @@
             }
         },
         "/image": {
-            "post": {
-                "description": "Thêm 1 image",
-                "operationId": "addImage",
-                "produces": [
-                    "application/json"
-                ],
-                "consumes": [
-                    "application/x-www-form-urlencoded"   
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "formData",
-                        "description": "id image ",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    {
-                        "name": "path",
-                        "in": "formData",
-                        "description": "path of image",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "mm_id",
-                        "in": "formData",
-                        "description": "id of moment",
-                        "required": false,
-                        "type": "int32"
-                    },
-                    {
-                        "name": "act_id",
-                        "in": "formData",
-                        "description": "id of activity management",
-                        "required": false,
-                        "type": "int32"
-                    },
-                    {
-                        "name": "noti_id",
-                        "in": "formData",
-                        "description": "id of notification",
-                        "type": "int32",
-                        "required": false
-                    },
-                    {
-                        "name": "wp_id",
-                        "in": "formData",
-                        "description": "id of week plan",
-                        "required": false,
-                        "type": "int32"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Kết quả trả về",
-                        "schema": {
-                            "$ref": "#/definitions/Image"
-                        }
-                    },
-                    "default": {
-                        "description": "unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorModel"
-                        }
-                    }
-                },
-                "security": [{
-                    "api_key": []
-                }]
-            },
             "get": {
                 "description": "lấy ra tất cả image",
                 "operationId": "getImage",
@@ -860,6 +725,70 @@
                             "items": {
                                 "$ref": "#/definitions/Image"
                             }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            },
+            "post": {
+                "description": "Thêm 1 image",
+                "operationId": "addImage",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"   
+                ],
+                "parameters": [
+                    {
+                        "name": "path",
+                        "in": "formData",
+                        "description": "path of image",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "mm_id",
+                        "in": "formData",
+                        "description": "id of moment",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "act_id",
+                        "in": "formData",
+                        "description": "id of activity management",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "noti_id",
+                        "in": "formData",
+                        "description": "id of notification",
+                        "type": "string",
+                        "required": false
+                    },
+                    {
+                        "name": "wp_id",
+                        "in": "formData",
+                        "description": "id of week plan",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "$ref": "#/definitions/Image"
                         }
                     },
                     "default": {
@@ -919,14 +848,7 @@
                 "consumes": [
                     "application/x-www-form-urlencoded"
                 ],
-                "parameters": [{
-                        "name": "id",
-                        "in": "path",
-                        "description": "id image ",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int32"
-                    },
+                "parameters": [
                     {
                         "name": "path",
                         "in": "formData",
@@ -939,20 +861,20 @@
                         "in": "formData",
                         "description": "id of moment",
                         "required": false,
-                        "type": "int32"
+                        "type": "string"
                     },
                     {
                         "name": "act_id",
                         "in": "formData",
                         "description": "id of activity management",
                         "required": false,
-                        "type": "int32"
+                        "type": "string"
                     },
                     {
                         "name": "noti_id",
                         "in": "formData",
                         "description": "id of notification",
-                        "type": "int32",
+                        "type": "string",
                         "required": false
                     },
                     {
@@ -960,7 +882,7 @@
                         "in": "formData",
                         "description": "id of week plan",
                         "required": false,
-                        "type": "int32"
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -968,6 +890,493 @@
                         "description": "Kết quả trả về",
                         "schema": {
                             "$ref": "#/definitions/Image"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            }
+        },
+        "/teacher": {
+            "get": {
+                "description": "lấy ra tất cả teacher",
+                "operationId": "getTeacher",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Teacher"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            },
+            "post": {
+                "description": "Thêm 1 teacher",
+                "operationId": "addTeacher",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"   
+                ],
+                "parameters": [
+                    {
+                        "name": "last_name",
+                        "in": "formData",
+                        "description": "Last name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "first_name",
+                        "in": "formData",
+                        "description": "first name",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "address",
+                        "in": "formData",
+                        "description": "address",
+                        "type": "string",
+                        "required": false
+                    },
+                    {
+                        "name": "phone",
+                        "in": "formData",
+                        "description": "number phone",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "email",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "avatar",
+                        "in": "formData",
+                        "description": "avatar",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "$ref": "#/definitions/Teacher"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            }
+        },
+        "/teacher/{id}" : {
+            "get": {
+                "description": "Lấy teacher theo id",
+                "operationId": "findTeacherById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "teacher id",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int32"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Teacher"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            },
+            "put": {
+                "description": "chỉnh sửa 1 teacher",
+                "operationId": "addteacher",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "last_name",
+                        "in": "formData",
+                        "description": "Last name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "first_name",
+                        "in": "formData",
+                        "description": "first name",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "address",
+                        "in": "formData",
+                        "description": "address",
+                        "type": "string",
+                        "required": false
+                    },
+                    {
+                        "name": "phone",
+                        "in": "formData",
+                        "description": "number phone",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "email",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "avatar",
+                        "in": "formData",
+                        "description": "avatar",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "$ref": "#/definitions/Teacher"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            }
+        },
+        "/student": {
+            "get": {
+                "description": "lấy ra tất cả student",
+                "operationId": "getStudent",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Student"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            },
+            "post": {
+                "description": "Thêm 1 student",
+                "operationId": "add Student",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"   
+                ],
+                "parameters": [
+                    {
+                        "name": "last_name",
+                        "in": "formData",
+                        "description": "Last name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "first_name",
+                        "in": "formData",
+                        "description": "first name",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "gender",
+                        "in": "formData",
+                        "description": "gender",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "birthday",
+                        "in": "formData",
+                        "description": "birthday",
+                        "required": false,
+                        "type": "date"
+                    },
+                    {
+                        "name": "address",
+                        "in": "formData",
+                        "description": "address",
+                        "type": "string",
+                        "required": false
+                    },
+                    {
+                        "name": "parent_id",
+                        "in": "formData",
+                        "description": "id cua nguoi bao ho",
+                        "type": "integer",
+                        "required": false
+                    },
+                    {
+                        "name": "school_year",
+                        "in": "formData",
+                        "description": "nam nhap hoc",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "grade",
+                        "in": "formData",
+                        "description": "khoi lop 1, 2, 3 ,4 ...",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "class_id",
+                        "in": "formData",
+                        "description": "class_id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "school_id",
+                        "in": "formData",
+                        "description": "school_id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "avatar",
+                        "in": "formData",
+                        "description": "avatar",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "$ref": "#/definitions/Teacher"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            }
+        },
+        "/student/{id}" : {
+            "get": {
+                "description": "Lấy student theo id",
+                "operationId": "findStudentById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "student id",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int32"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Student"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            },
+            "put": {
+                "description": "chỉnh sửa 1 student",
+                "operationId": "addteacher",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "last_name",
+                        "in": "formData",
+                        "description": "Last name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "first_name",
+                        "in": "formData",
+                        "description": "first name",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "gender",
+                        "in": "formData",
+                        "description": "gender",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "birthday",
+                        "in": "formData",
+                        "description": "birthday",
+                        "format": "date",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "address",
+                        "in": "formData",
+                        "description": "address",
+                        "type": "string",
+                        "required": false
+                    },
+                    {
+                        "name": "parent_id",
+                        "in": "formData",
+                        "description": "id cua nguoi bao ho",
+                        "type": "integer",
+                        "required": false
+                    },
+                    {
+                        "name": "school_year",
+                        "in": "formData",
+                        "description": "nam nhap hoc",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "grade",
+                        "in": "formData",
+                        "description": "khoi lop 1, 2, 3 ,4 ...",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "class_id",
+                        "in": "formData",
+                        "description": "class_id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "school_id",
+                        "in": "formData",
+                        "description": "school_id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "avatar",
+                        "in": "formData",
+                        "description": "avatar",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "$ref": "#/definitions/Student"
                         }
                     },
                     "default": {
@@ -1082,6 +1491,78 @@
                     "type": "string"
                 }
             }
+        },
+        "Teacher": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "avatar": {
+                    "type": "string"
+                }
+            }
+        },
+        "Student": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "birthday": {
+                    "type": "date"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "parent_id": {
+                    "type": "integer"
+                },
+                "school_year": {
+                    "type": "integer"
+                },
+                "grade": {
+                    "type": "string"
+                },
+                "class_id": {
+                    "type": "integer"
+                },
+                "school_id": {
+                    "type": "integer"
+                },
+                "avatar": {
+                    "type": "string"
+                }
+            } 
         },
         "Moment": {
             "type": "object",

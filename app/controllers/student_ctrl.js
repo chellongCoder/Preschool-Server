@@ -1,15 +1,15 @@
 const { RESPONSE_STATUS, Response, Controller } = require('../base');
-const ParentModel = require('../models/parent_model');
+const StudentModel = require('../models/student_model');
 
-class ParentController extends Controller {
+class StudentController extends Controller {
     constructor() {
         super();
     }
 
     async get(req, res) {
         try {
-            const parentModel = new ParentModel();
-            const rs = await parentModel.getAll();
+            const studentModel = new StudentModel();
+            const rs = await studentModel.getAll();
             res.json(new Response(RESPONSE_STATUS.SUCCESS, rs))
         } catch (e) {
             console.log(e);
@@ -19,8 +19,8 @@ class ParentController extends Controller {
     }
     async getId(req, res) {
         try {
-            const parentModel = new ParentModel();
-            const rs = await parentModel.get(req.params.id);
+            const studentModel = new StudentModel();
+            const rs = await studentModel.get(req.params.id);
             res.json(new Response(RESPONSE_STATUS.SUCCESS, rs))
         } catch (e) {
             console.log("error", e);
@@ -29,18 +29,19 @@ class ParentController extends Controller {
     }
     async add(req, res) {
         try {
-            const parentModel = new ParentModel();
-            const rs = await parentModel.add(req.body);
+            const studentModel = new StudentModel();
+            const rs = await studentModel.add(req.body);
             res.json(new Response(RESPONSE_STATUS.SUCCESS, rs))
         } catch (e) {
+            console.log(e)
             res.json(new Response(RESPONSE_STATUS.ERROR, {}, { code: '400', message: 'Có lỗi xảy ra. Vui lòng liên hệ để được giải đáp.' }));
         }
     }
     async update(req, res) {
         try {
-            const parentModel = new ParentModel();
+            const studentModel = new StudentModel();
             console.log("request body", req.body, req.params);
-            const rs = await parentModel.update({...req.body, id: req.params})
+            const rs = await studentModel.update({...req.body, id: req.params})
             res.json(new Response(RESPONSE_STATUS.SUCCESS, rs))
         } catch (e) {
             console.log("error", e);
@@ -49,12 +50,12 @@ class ParentController extends Controller {
     }
     async remove(req, res) {
         try {
-            const parentModel = new ParentModel();
-            const rs = await parentModel.del(req.params.id);
+            const studentModel = new StudentModel();
+            const rs = await studentModel.del(req.params.id);
             res.json(new Response(RESPONSE_STATUS.SUCCESS, rs))
         } catch (e) {
             res.json(new Response(RESPONSE_STATUS.ERROR, {}, { code: '400', message: 'Có lỗi xảy ra. Vui lòng liên hệ để được giải đáp.' }));
         }
     }
 }
-module.exports = ParentController;
+module.exports = StudentController;

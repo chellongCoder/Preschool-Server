@@ -1,6 +1,6 @@
 const BaseModel = require('../base/base_model');
 const Hash = require('../utils/hash');
-const TABLE = 'user';
+const TABLE = 'users';
 class UserModel extends BaseModel {
 
     constructor(version) {
