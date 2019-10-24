@@ -2730,6 +2730,221 @@
                     "api_key": []
                 }]
             }
+        },
+        "/absense": {
+            "get": {
+                "description": "lấy ra tất cả absense",
+                "operationId": "getAbsense",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Absense"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            },
+            "post": {
+                "description": "Thêm 1 absense",
+                "operationId": "add absense",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"   
+                ],
+                "parameters": [
+                    {
+                        "name": "std_id",
+                        "in": "formData",
+                        "description": "id student",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "date",
+                        "in": "formData",
+                        "description": "ngày xin nghỉ phép ",
+                        "required": true,
+                        "type": "date"
+                    },
+                    {
+                        "name": "reason",
+                        "in": "formData",
+                        "description": "Lý do ",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status_accept",
+                        "in": "formData",
+                        "description": "trạng thái chấp nhận ",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "$ref": "#/definitions/Absense"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            }
+        },
+        "/absense/{id}" : {
+            "get": {
+                "description": "Lấy Absense theo id",
+                "operationId": "findAbsenseById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "Absense id",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int32"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Absense"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            },
+            "put": {
+                "description": "chỉnh sửa 1 Absense",
+                "operationId": "addAbsensePlan",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "std_id",
+                        "in": "formData",
+                        "description": "id student",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "date",
+                        "in": "formData",
+                        "description": "ngày xin nghỉ phép ",
+                        "required": true,
+                        "type": "date"
+                    },
+                    {
+                        "name": "reason",
+                        "in": "formData",
+                        "description": "Lý do ",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status_accept",
+                        "in": "formData",
+                        "description": "trạng thái chấp nhận ",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "$ref": "#/definitions/Absense"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            },
+            "delete": {
+                "description": "xoá Absense theo id",
+                "operationId": "getAbsensePlan",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "Absense id",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int32"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Absense"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            }
         }
     },
     "definitions": {
@@ -2961,6 +3176,30 @@
                 },
                 "date_plan": {
                     "type": "date"
+                }
+            }
+        },
+        "Absense": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "std_id": {
+                    "type": "integer"
+                },
+                "date": {
+                    "type": "date"
+                },
+                "reason": {
+                    "type": "string"
+                },
+                "status_accept": {
+                    "type": "integer"
                 }
             }
         },

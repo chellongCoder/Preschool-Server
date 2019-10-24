@@ -1,10 +1,9 @@
 const BaseModel = require('../base/base_model');
-const TABLE = 'students';
-class StudentModel extends BaseModel {
+const TABLE = 'absense_tickets';
+class AbsenseModel extends BaseModel {
 
     constructor(version) {
         super(TABLE, version);
     }
-
 }
-module.exports = StudentModel;
+module.exports = AbsenseModel;

@@ -89,7 +89,7 @@ const createParentStudent = async (number) => {
     const randUserParent = {
         username: faker.internet.userName(),
         password: '$2b$10$bVYPXUbI5N8yTtkJVcKPbelQZA7eRB.KI5fa.U1bM3ox7Ze8RuFAe',
-        role: role.TEACHER
+        role: role.PARENT
     }
     const user = await db.user.create(randUserParent);
     let relationships = ["Bố", "Mẹ", "Ông", "Bà", "Khác"];
