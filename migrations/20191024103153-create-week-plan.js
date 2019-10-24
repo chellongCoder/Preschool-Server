@@ -10,40 +10,20 @@ module.exports = {
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
    return Promise.all([
-    queryInterface.createTable('schools', {
+    queryInterface.createTable('week_plan', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      school_name: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      school_year: { //nam thanh lap truong
+      image_id: {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      phone: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      email: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      website: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      address: {
+      date_plan: {
         allowNull: false,
-        type: Sequelize.STRING
-      },
-      description: {
-        allowNull: true,
-        type: Sequelize.TEXT
+        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

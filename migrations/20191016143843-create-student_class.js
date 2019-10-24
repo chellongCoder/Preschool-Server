@@ -11,6 +11,12 @@ module.exports = {
     */
    return Promise.all([
     queryInterface.createTable('std_cl', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
       class_id: {
         allowNull: false,
         type: Sequelize.INTEGER
@@ -19,6 +25,16 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
+      createdAt: {
+        allowNull: false,
+        defaultValue: Sequelize.fn('now'),
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        defaultValue: Sequelize.fn('now'),
+        type: Sequelize.DATE
+      }
     })
   ])
   },

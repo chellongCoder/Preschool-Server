@@ -5,6 +5,12 @@ const ParentCtrl = require('./parent_ctrl')
 const ImageCtrl = require('./image_ctrl')
 const TeacherCtrl = require('./teacher_ctrl')
 const StudentCtrl = require('./student_ctrl')
+const ActivityCtrl = require('./activity_ctrl')
+const NotifyCtrl = require('./notify_ctrl')
+const ClassCtrl = require('./class_ctrl')
+const SchoolCtrl = require('./school_ctrl')
+const MealTypeCtrl = require('./meal_type_ctrl')
+const WeekPlanCtrl = require('./week_plan_ctrl')
 module.exports = {
     ApiCtrl,
     AuthCtrl,
@@ -12,5 +18,11 @@ module.exports = {
     ParentCtrl,
     ImageCtrl,
     TeacherCtrl,
-    StudentCtrl
+    StudentCtrl,
+    ActivityCtrl,
+    NotifyCtrl,
+    ClassCtrl,
+    SchoolCtrl,
+    MealTypeCtrl,
+    WeekPlanCtrl
 }
