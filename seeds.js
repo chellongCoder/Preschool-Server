@@ -14,7 +14,17 @@ const config = {
     CLASS_IN_SCHOOL: 5,
     TEACHER_IN_SCHOOL: 5,
     STUDENT_IN_CLASS: 5,
-    PARENT_STUDENT: 5
+    PARENT_STUDENT: 5,
+    STUDY_RESULT: 5,
+    TUTITION: 5,
+    ACTIVITIES: 2,
+    MOMENTS: 2,
+    NOTIFICATIONS: 2,
+    WEEK_PLAN: 2,
+    IMAGE: 2,
+
+    MEAL_TYPE: 10,
+    
 }
 const createSchool = async (number) => {
     let schoolIDs = [];
@@ -134,7 +144,70 @@ const createStudentForClass = async (number,schoolIDs, parentIDs, classIDs) => {
     return students;
 }
 
-const createData = async () => {
+const createStudyResult = async (number, studentIDs, classIDs) => {
+    let studyResults = [];
+    for (let i = 0; i < number; i++) {
+        const randStudyResult = {
+            stdID: studentIDs[i],
+            classID: classIDs[i],
+            rate: Math.floor(Math.random() * 5) + 1,
+            semester: Math.floor(Math.random() * 2) + 1,      
+            review: faker.lorem.paragraph(),
+        }
+        const studyResult = await db['study_result'].create(randStudyResult);
+        studyResults.push(studyResult.id);
+    }
+    return studyResults;
+}
+
+const createTutition = async (number, studentIDs) => {
+    let tuitions = [];
+    for (let i = 0; i < number; i++) {
+        const randTuition = {
+            stdID: studentIDs[i],
+            semester: Math.floor(Math.random() * 2) + 1,
+            schFee: 5000000,   
+            isPaid: Math.floor(Math.random() * 2) + 0
+        }
+        const tuition = await db['tuition'].create(randTuition);
+        tuitions.push(tuition.id);
+    }
+    return tuitions;
+}
+
+const createMealType = async (number, studentIDs) => {
+    let mealTypes = [];
+    const times = 2;
+    for (let i = 0; i < number; i++) {
+        const randMealType = {
+            breakfast: faker.lorem.words(times),
+            breakfast_sub: faker.lorem.words(times),
+            lunch: faker.lorem.words(times),
+            lunch_sub: faker.lorem.words(times),
+            date_meal: faker.date.future(),
+        }
+        const mealType = await db['meal_type'].create(randMealType);
+        mealTypes.push(mealType.id);
+    }
+    return mealTypes;
+}
+
+const createAbsenseTicket = async (number, studentIDs) => {
+    let absense_tickets = [];
+    for (let i = 0; i < number; i++) {
+        const randAbsenseTicket = {
+            std_id: studentIDs[i],
+            date: faker.date.future(2019),
+            reason: faker.lorem.paragraph(),   
+            status_accept: Math.floor(Math.random() * 2) + 0
+        }
+        const absense_ticket = await db['absense_tickets'].create(randAbsenseTicket);
+        absense_tickets.push(absense_ticket.id);
+    }
+    return absense_tickets;
+}
+
+const createDataUser = async () => {
     const schoolIDs = await createSchool(config.NUM_SCHOOL);
     console.log("schoolIDs", schoolIDs);
     const teacherIDs = await createTeacherForClass(config.TEACHER_IN_SCHOOL, schoolIDs);
@@ -145,13 +218,130 @@ const createData = async () => {
     console.log("parentIDs", parentIDs);
     const studentIDs = await createStudentForClass(config.STUDENT_IN_CLASS, schoolIDs, parentIDs, classIDs)
     console.log("studentIDs", studentIDs);
+    const studyResultIDs = await createStudyResult(config.STUDY_RESULT, studentIDs, classIDs);
+    console.log("studyResultIDs", studyResultIDs);
+    const tutitionIDs = await createTutition(config.TUTITION, studentIDs);
+    console.log("tutitionIDs", tutitionIDs);
+    const absenseTicketIDs = await createAbsenseTicket(config.TUTITION, studentIDs);
+    console.log("absenseTicketIDs", absenseTicketIDs);
+
+}
+
+const createActivity = async (number) => {
+    let activities = [];
+    for (let i = 0; i < number; i++) {
+        const randActivity = {
+            title: faker.lorem.sentence(),
+            acti_time_from: faker.date.past(),
+            acti_time_to: faker.date.future(),
+            regis_time_from: faker.date.past(),
+            regis_time_to: faker.date.future(),
+            content: faker.lorem.paragraph(),
+            regis_status: 0
+        }
+        console.log("randActivity", randActivity);
+        const activity = await db['activity'].create(randActivity);
+        activities.push(activity.id);
+    }
+    return activities;
+}
+
+const createMoment = async (number) => {
+    let momemts = [];
+    const teacherIDs = await selectUser(1, number, "teacher");
+    for (let i = 0; i < number; i++) {
+        const randMoment = {
+            content: faker.lorem.sentence(),
+            likes: Math.round(Math.random() * 100),
+            author_id: teacherIDs[i].id,
+            status_accept: 1,
+        }
+        console.log("randMoment", randMoment);
+        const moment = await db['moment'].create(randMoment);
+        momemts.push(moment.id);
+    }
+    return momemts;
+}
+
+const createNotification = async (number) => {
+    let notifications = [];
+    const teacherIDs = await selectUser(2, number, "teacher");
+    for (let i = 0; i < number; i++) {
+        const randNotify = {
+            title: faker.lorem.sentence(),
+            content: faker.lorem.paragraph(),
+            author: teacherIDs[i].id,
+        }
+        const notification = await db['notification'].create(randNotify);
+        notifications.push(notification.id);
+    }
+    return notifications;
+}
+
+const createWeekPlan = async (number, imageIDs) => {
+    let weekplans = [];
+    for (let i = 0; i < number; i++) {
+        const randWeekPlan = {
+            date_plan: faker.date.recent(),
+            imageID: imageIDs[i]
+        }
+        const weekPlan = await db['week_plan'].create(randWeekPlan);
+        weekplans.push(weekPlan.id);
+    }
+    return weekplans;
+}
+
+const createImage = async (number, momentIDs, activityIDs, notificationIDs, weekPlanIDs) => {
+    let images = [];
+    for (let i = 0; i < number; i++) {
+        const randImage = {
+            path: faker.image.imageUrl(),
+        }
+        const image = await db['image'].create(randImage);
+        const imageNoti = {
+            imageID: image.id,
+            notificationID: notificationIDs[i]
+        }
+        await db['image_notification'].create(imageNoti);
+        const imageMoment = {
+            imageID: image.id,
+            momentID: momentIDs[i]
+        }
+        await db['image_moment'].create(imageMoment);
+        const imageAcitivity = {
+            imageID: image.id,
+            activityID: activityIDs[i]
+        }
+        await db['image_activity'].create(imageAcitivity);
+        images.push(image.id);
+    }
+    return images;
+}
+
+const selectUser = async (offset, limit, nameModel) => {
+    let query = {
+        offset: offset,
+        limit: limit
+    }
+    const result = await db[nameModel].findAll(query);
+    return result;
+}
+
+const createData = async () => {
+    const activityIDs = await createActivity(config.ACTIVITIES);
+    console.log("activityIDs", activityIDs);
+    const momentIDs = await createMoment(config.MOMENTS);
+    console.log("momentIDs", momentIDs);
+    const notificationIDs = await createNotification(config.NOTIFICATIONS);
+    console.log("notificationIDs", notificationIDs);
+    const imageIDs = await createImage(config.IMAGE, momentIDs, activityIDs, notificationIDs);
+    console.log("imageIDs", imageIDs)
+    const weekPlanIDs = await createWeekPlan(config.WEEK_PLAN, imageIDs);
+    console.log("weekPlanIDs", weekPlanIDs);
 }
 
 (async () => {
-    // await createSchool(config.NUM_SCHOOL);
-    await createData();
-    // await createTeacherForClass(config.TEACHER_IN_SCHOOL);
-    // await createClassForSchool(config.CLASS_IN_SCHOOL);
-    // await createParentStudent(config.PARENT_STUDENT);
-    // await createStudentForClass(config.STUDENT_IN_CLASS)
+    // await createDataUser();
+    // await createData();
+    await createMealType(config.MEAL_TYPE, [1, 2, 3, 4, 5]);
 })()

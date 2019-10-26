@@ -1,5 +1,5 @@
 const BaseModel = require('../base/base_model');
-const TABLE = 'week_plan';
+const TABLE = 'week_plans';
 class WeekPlanModel extends BaseModel {
 
     constructor(version) {

@@ -1,5 +1,5 @@
 const BaseModel = require('../base/base_model');
-const TABLE = 'activities_management';
+const TABLE = 'activities';
 class NotifyModel extends BaseModel {
 
     constructor(version) {

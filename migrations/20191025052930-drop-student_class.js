@@ -10,9 +10,8 @@ module.exports = {
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
    return Promise.all([
-    queryInterface.removeColumn(
-      'week_plans',
-      'image_id'
+    queryInterface.dropTable(
+      'std_cl'
     )
    ])
   },

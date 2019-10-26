@@ -10,20 +10,20 @@ module.exports = {
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
    return Promise.all([
-    queryInterface.createTable('week_plans', {
+    queryInterface.createTable('image_activities', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      image_id: {
+      imageID: {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      date_plan: {
+      activityID: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

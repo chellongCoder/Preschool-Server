@@ -10,10 +10,14 @@ module.exports = {
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
    return Promise.all([
-    queryInterface.removeColumn(
+    queryInterface.addColumn(
       'week_plans',
-      'image_id'
-    )
+      'imageID', {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        after: "date_plan"
+      }
+    ),
    ])
   },
 

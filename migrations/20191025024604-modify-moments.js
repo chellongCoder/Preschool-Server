@@ -11,8 +11,8 @@ module.exports = {
     */
    return Promise.all([
     queryInterface.removeColumn(
-      'week_plans',
-      'image_id'
+      'moments',
+      'img'
     )
    ])
   },

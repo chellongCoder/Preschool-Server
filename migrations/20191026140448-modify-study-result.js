@@ -10,33 +10,23 @@ module.exports = {
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
    return Promise.all([
-    queryInterface.createTable('week_plans', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      image_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
-      date_plan: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      createdAt: {
-        allowNull: false,
-        defaultValue: Sequelize.fn('now'),
-        type: Sequelize.DATE
-      },
-      updatedAt: {
+    queryInterface.addColumn(
+      'study_results',
+      'createdAt', {
         allowNull: false,
         defaultValue: Sequelize.fn('now'),
         type: Sequelize.DATE
       }
-    })
-   ])
+    ),
+    queryInterface.addColumn(
+      'study_results',
+      'updatedAt', {
+        allowNull: false,
+        defaultValue: Sequelize.fn('now'),
+        type: Sequelize.DATE
+      }
+    ),
+  ])
   },
 
   down: (queryInterface, Sequelize) => {
