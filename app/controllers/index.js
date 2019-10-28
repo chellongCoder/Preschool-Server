@@ -12,6 +12,9 @@ const SchoolCtrl = require('./school_ctrl')
 const MealTypeCtrl = require('./meal_type_ctrl')
 const WeekPlanCtrl = require('./week_plan_ctrl')
 const AbsenseCtrl = require('./absense_ticket_ctrl')
+const StudyResultCtrl = require('./study_result_ctrl')
+const TuitionCtrl = require('./tuition_ctrl')
+
 module.exports = {
     ApiCtrl,
     AuthCtrl,
@@ -26,5 +29,7 @@ module.exports = {
     SchoolCtrl,
     MealTypeCtrl,
     WeekPlanCtrl,
-    AbsenseCtrl
+    AbsenseCtrl,
+    StudyResultCtrl,
+    TuitionCtrl
 }

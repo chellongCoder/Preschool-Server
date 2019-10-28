@@ -212,7 +212,7 @@
                 }
             }
         },
-        "/moments": {
+        "/moment": {
             "get": {
                 "description": "Lấy toàn bộ Moment",
                 "operationId": "getmoment",
@@ -309,7 +309,7 @@
                 }]
             }
         },
-        "/moments/{id}": {
+        "/moment/{id}": {
             "get": {
                 "description": "Lấy danh sách moments theo id",
                 "operationId": "findParentById",
@@ -360,14 +360,6 @@
                         "type": "string"
                     },
                     {
-                        "name": "img",
-                        "in": "formData",
-                        "description": "Image id",
-                        "required": false,
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    {
                         "name": "likes",
                         "in": "formData",
                         "description": "like number",
@@ -390,6 +382,13 @@
                         "required": true,
                         "type": "integer",
                         "format": "int32"
+                    },
+                    {
+                        "name": "img_url",
+                        "in": "formData",
+                        "description": "Image url",
+                        "required": false,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -523,13 +522,6 @@
                         "required": false
                     },
                     {
-                        "name": "time_card_num",
-                        "in": "formData",
-                        "description": "mã thẻ",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
                         "name": "emergency_contact",
                         "in": "formData",
                         "description": "Liên hệ tin cậy",
@@ -638,13 +630,6 @@
                         "description": "url avatar parent",
                         "type": "string",
                         "required": false
-                    },
-                    {
-                        "name": "time_card_num",
-                        "in": "formData",
-                        "description": "mã thẻ",
-                        "required": false,
-                        "type": "string"
                     },
                     {
                         "name": "emergency_contact",
@@ -983,6 +968,13 @@
                         "description": "avatar",
                         "required": false,
                         "type": "string"
+                    },
+                    {
+                        "name": "schoolID",
+                        "in": "formData",
+                        "description": "school id",
+                        "required": false,
+                        "type": "integer"
                     }
                 ],
                 "responses": {
@@ -1091,6 +1083,13 @@
                         "description": "avatar",
                         "required": false,
                         "type": "string"
+                    },
+                    {
+                        "name": "schoolID",
+                        "in": "formData",
+                        "description": "school id",
+                        "required": false,
+                        "type": "integer"
                     }
                 ],
                 "responses": {
@@ -1098,6 +1097,41 @@
                         "description": "Kết quả trả về",
                         "schema": {
                             "$ref": "#/definitions/Teacher"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            },
+            "delete": {
+                "description": "xoá class theo id",
+                "operationId": "getmoment",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "class id",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int32"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Class"
+                            }
                         }
                     },
                     "default": {
@@ -1169,7 +1203,7 @@
                         "in": "formData",
                         "description": "gender",
                         "required": false,
-                        "type": "string"
+                        "type": "integer"
                     },
                     {
                         "name": "birthday",
@@ -1186,39 +1220,18 @@
                         "required": false
                     },
                     {
-                        "name": "parent_id",
+                        "name": "weight",
                         "in": "formData",
-                        "description": "id cua nguoi bao ho",
-                        "type": "integer",
-                        "required": false
+                        "description": "cân nặng",
+                        "required": false,
+                        "type": "number"
                     },
                     {
-                        "name": "school_year",
+                        "name": "height",
                         "in": "formData",
-                        "description": "nam nhap hoc",
+                        "description": "chiều cao ",
                         "required": false,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "grade",
-                        "in": "formData",
-                        "description": "khoi lop 1, 2, 3 ,4 ...",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "class_id",
-                        "in": "formData",
-                        "description": "class_id",
-                        "required": false,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "school_id",
-                        "in": "formData",
-                        "description": "school_id",
-                        "required": false,
-                        "type": "integer"
+                        "type": "number"
                     },
                     {
                         "name": "avatar",
@@ -1226,6 +1239,27 @@
                         "description": "avatar",
                         "required": false,
                         "type": "string"
+                    },
+                    {
+                        "name": "parent_id",
+                        "in": "formData",
+                        "description": "id cua nguoi bao ho",
+                        "type": "integer",
+                        "required": false
+                    },
+                    {
+                        "name": "school_id",
+                        "in": "formData",
+                        "description": "school id",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "class_id",
+                        "in": "formData",
+                        "description": "class id",
+                        "required": false,
+                        "type": "integer"
                     }
                 ],
                 "responses": {
@@ -1377,6 +1411,41 @@
                         "description": "Kết quả trả về",
                         "schema": {
                             "$ref": "#/definitions/Student"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            },
+            "delete": {
+                "description": "xoá student theo id",
+                "operationId": "getstudent",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "student id",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int32"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Student"
+                            }
                         }
                     },
                     "default": {
@@ -1647,6 +1716,41 @@
                 "security": [{
                     "api_key": []
                 }]
+            },
+            "delete": {
+                "description": "xoá Activity theo id",
+                "operationId": "getActivity",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "Activity id",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int32"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Activity"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
             }
         },
         "/notify": {
@@ -1829,6 +1933,41 @@
                         "description": "Kết quả trả về",
                         "schema": {
                             "$ref": "#/definitions/Notify"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            },
+            "delete": {
+                "description": "xoá Notify theo id",
+                "operationId": "getNotify",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "Notify id",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int32"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Notify"
+                            }
                         }
                     },
                     "default": {
@@ -2113,7 +2252,7 @@
                     {
                         "name": "school_name",
                         "in": "formData",
-                        "description": "teên trường ",
+                        "description": "tên trường ",
                         "required": true,
                         "type": "string"
                     },
@@ -2148,14 +2287,14 @@
                     {
                         "name": "address",
                         "in": "formData",
-                        "description": "dia chi",
+                        "description": "địa chỉ trường",
                         "required": false,
                         "type": "string"
                     },
                     {
                         "name": "description",
                         "in": "formData",
-                        "description": "mo ta",
+                        "description": "Mô tả về trường",
                         "required": false,
                         "type": "string"
                     }
@@ -2945,6 +3084,450 @@
                     "api_key": []
                 }]
             }
+        },
+        "/studyResult": {
+            "get": {
+                "description": "lấy ra tất cả studyResult",
+                "operationId": "getStudyResult",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/StudyResult"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            },
+            "post": {
+                "description": "Thêm 1 studyResult",
+                "operationId": "add studyResult",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"   
+                ],
+                "parameters": [
+                    {
+                        "name": "stdID",
+                        "in": "formData",
+                        "description": "id student",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "classID",
+                        "in": "formData",
+                        "description": "id parent ",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "rate",
+                        "in": "formData",
+                        "description": "đánh giá học lực (1: giỏi, 2 khá, 3 trung bình, 4 yếu, 5 kém)",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "semester",
+                        "in": "formData",
+                        "description": "học kì(1, 2)",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "review",
+                        "in": "formData",
+                        "description": "nhận xét của giáo viên ",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "$ref": "#/definitions/StudyResult"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            }
+        },
+        "/studyResult/{id}" : {
+            "get": {
+                "description": "Lấy studyResult theo id",
+                "operationId": "findStudyResultById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "studyResult id",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int32"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/StudyResult"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            },
+            "put": {
+                "description": "chỉnh sửa 1 studyResult",
+                "operationId": "addStudyResultPlan",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "stdID",
+                        "in": "formData",
+                        "description": "id student",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "classID",
+                        "in": "formData",
+                        "description": "id parent ",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "rate",
+                        "in": "formData",
+                        "description": "đánh giá học lực (1: giỏi, 2 khá, 3 trung bình, 4 yếu, 5 kém)",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "semester",
+                        "in": "formData",
+                        "description": "học kì(1, 2)",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "review",
+                        "in": "formData",
+                        "description": "nhận xét của giáo viên ",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "$ref": "#/definitions/StudyResult"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            },
+            "delete": {
+                "description": "xoá studyResult theo id",
+                "operationId": "getStudyResultPlan",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "studyResult id",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int32"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/StudyResult"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            }
+        },
+        "/tuition": {
+            "get": {
+                "description": "lấy ra tất cả tuition",
+                "operationId": "getTuition",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Tuition"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            },
+            "post": {
+                "description": "Thêm 1 tuition",
+                "operationId": "add tuition",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"   
+                ],
+                "parameters": [
+                    {
+                        "name": "stdID",
+                        "in": "formData",
+                        "description": "id tuition",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "semester",
+                        "in": "formData",
+                        "description": "học kì(1, 2)",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "schFee",
+                        "in": "formData",
+                        "description": "học phí của kì",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "isPaid",
+                        "in": "formData",
+                        "description": "tình trạng đã đóng (0 ỏ 1)",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "$ref": "#/definitions/Tuition"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            }
+        },
+        "/tuition/{id}" : {
+            "get": {
+                "description": "Lấy Tuition theo id",
+                "operationId": "findTuitionById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "Tuition id",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int32"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Tuition"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            },
+            "put": {
+                "description": "chỉnh sửa 1 Tuition",
+                "operationId": "addTuitionPlan",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "stdID",
+                        "in": "formData",
+                        "description": "id tuition",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "semester",
+                        "in": "formData",
+                        "description": "học kì(1, 2)",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "schFee",
+                        "in": "formData",
+                        "description": "học phí của kì",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "isPaid",
+                        "in": "formData",
+                        "description": "tình trạng đã đóng (0 ỏ 1)",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "$ref": "#/definitions/Tuition"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            },
+            "delete": {
+                "description": "xoá Tuition theo id",
+                "operationId": "getTuitionPlan",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "Tuition id",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int32"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Tuition"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            }
         }
     },
     "definitions": {
@@ -3199,6 +3782,52 @@
                     "type": "string"
                 },
                 "status_accept": {
+                    "type": "integer"
+                }
+            }
+        },
+        "StudyResult": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "stdID": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "classID": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "rate": {
+                    "type": "integer"
+                },
+                "semester": {
+                    "type": "integer"
+                },
+                "review": {
+                    "type": "string"
+                }
+            }
+        },
+        "Tuition": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "stdID": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "semester": {
+                    "type": "integer"
+                },
+                "schFee": {
+                    "type": "integer"
+                },
+                "isPaid": {
                     "type": "integer"
                 }
             }

@@ -11,22 +11,22 @@ module.exports = {
     */
    return Promise.all([
     queryInterface.addColumn(
-      'study_results',
-      'createdAt', {
+      'students',
+      'weight', {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        defaultValue: Sequelize.fn('now'),
-        type: Sequelize.DATE
+        after: "address"
       }
     ),
     queryInterface.addColumn(
-      'study_results',
-      'updatedAt', {
+      'students',
+      'height', {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        defaultValue: Sequelize.fn('now'),
-        type: Sequelize.DATE
+        after: "address"
       }
     ),
-  ])
+   ])
   },
 
   down: (queryInterface, Sequelize) => {

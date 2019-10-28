@@ -10,23 +10,23 @@ module.exports = {
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
    return Promise.all([
-    queryInterface.addColumn(
-      'tuitions',
-      'createdAt', {
+    queryInterface.changeColumn(
+      'students',
+      'weight', {
+        type: Sequelize.DECIMAL(10, 1),
         allowNull: false,
-        defaultValue: Sequelize.fn('now'),
-        type: Sequelize.DATE
+        after: "address"
       }
     ),
-    queryInterface.addColumn(
-      'tuitions',
-      'updatedAt', {
+    queryInterface.changeColumn(
+      'students',
+      'height', {
+        type: Sequelize.DECIMAL(10, 1),
         allowNull: false,
-        defaultValue: Sequelize.fn('now'),
-        type: Sequelize.DATE
+        after: "address"
       }
     ),
-  ])
+   ])
   },
 
   down: (queryInterface, Sequelize) => {

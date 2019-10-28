@@ -1,5 +1,8 @@
 const { RESPONSE_STATUS, Response, Controller } = require('../base');
 const TeacherModel = require('../models/teacher_model');
+const db = require('./../../modelsORM');
+const faker = require('faker');
+const {roles} = require('./../../config/app.config');
 
 class TeacherController extends Controller {
     constructor() {
@@ -28,7 +31,14 @@ class TeacherController extends Controller {
         }
     }
     async add(req, res) {
+        const randTeacher = {
+            username: faker.internet.userName(),
+            password: '$2b$10$bVYPXUbI5N8yTtkJVcKPbelQZA7eRB.KI5fa.U1bM3ox7Ze8RuFAe',
+            role: roles.TEACHER
+        }
         try {
+            const user = await db.user.create(randTeacher);
+            req.body.userID = user.id;
             const teacherModel = new TeacherModel();
             const rs = await teacherModel.add(req.body);
             res.json(new Response(RESPONSE_STATUS.SUCCESS, rs))

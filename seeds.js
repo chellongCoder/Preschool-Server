@@ -17,11 +17,11 @@ const config = {
     PARENT_STUDENT: 5,
     STUDY_RESULT: 5,
     TUTITION: 5,
-    ACTIVITIES: 2,
-    MOMENTS: 2,
-    NOTIFICATIONS: 2,
-    WEEK_PLAN: 2,
-    IMAGE: 2,
+    ACTIVITIES: 5,
+    MOMENTS: 5,
+    NOTIFICATIONS: 5,
+    WEEK_PLAN: 5,
+    IMAGE: 5,
 
     MEAL_TYPE: 10,
     
@@ -132,7 +132,8 @@ const createStudentForClass = async (number,schoolIDs, parentIDs, classIDs) => {
             birthday: faker.date.past(),
             address: faker.address.country(),
             parent_id: parentIDs[i],
-            email: faker.internet.email(),
+            weight: (Math.random() * 100 + 1).toFixed(2),
+            height: (Math.random() * 200 + 1).toFixed(2),
             avatar: faker.image.imageUrl(),
             school_id: schoolIDs[i],
             class_id: classIDs[i]

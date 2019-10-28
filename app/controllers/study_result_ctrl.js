@@ -1,18 +1,15 @@
 const { RESPONSE_STATUS, Response, Controller } = require('../base');
-const ParentModel = require('../models/parent_model');
-const db = require('./../../modelsORM');
-const faker = require('faker');
-const {roles} = require('./../../config/app.config');
+const StudyResultModel = require('../models/study_result_model');
 
-class ParentController extends Controller {
+class StudyResultController extends Controller {
     constructor() {
         super();
     }
 
     async get(req, res) {
         try {
-            const parentModel = new ParentModel();
-            const rs = await parentModel.getAll();
+            const studyResultModel = new StudyResultModel();
+            const rs = await studyResultModel.getAll();
             res.json(new Response(RESPONSE_STATUS.SUCCESS, rs))
         } catch (e) {
             console.log(e);
@@ -22,8 +19,8 @@ class ParentController extends Controller {
     }
     async getId(req, res) {
         try {
-            const parentModel = new ParentModel();
-            const rs = await parentModel.get(req.params.id);
+            const studyResultModel = new StudyResultModel();
+            const rs = await studyResultModel.get(req.params.id);
             res.json(new Response(RESPONSE_STATUS.SUCCESS, rs))
         } catch (e) {
             console.log("error", e);
@@ -31,27 +28,20 @@ class ParentController extends Controller {
         }
     }
     async add(req, res) {
-        const randParent = {
-            username: faker.internet.userName(),
-            password: '$2b$10$bVYPXUbI5N8yTtkJVcKPbelQZA7eRB.KI5fa.U1bM3ox7Ze8RuFAe',
-            role: roles.PARENT
-        }
         try {
-            const user = await db.user.create(randParent);
-            req.body.userID = user.id;
-            const parentModel = new ParentModel();
-            const rs = await parentModel.add(req.body);
+            const studyResultModel = new StudyResultModel();
+            const rs = await studyResultModel.add(req.body);
             res.json(new Response(RESPONSE_STATUS.SUCCESS, rs))
         } catch (e) {
-            console.log('e', e);
+            console.log(e)
             res.json(new Response(RESPONSE_STATUS.ERROR, {}, { code: '400', message: 'Có lỗi xảy ra. Vui lòng liên hệ để được giải đáp.' }));
         }
     }
     async update(req, res) {
         try {
-            const parentModel = new ParentModel();
+            const studyResultModel = new StudyResultModel();
             console.log("request body", req.body, req.params);
-            const rs = await parentModel.update({...req.body, id: req.params})
+            const rs = await studyResultModel.update({...req.body, id: req.params})
             res.json(new Response(RESPONSE_STATUS.SUCCESS, rs))
         } catch (e) {
             console.log("error", e);
@@ -60,12 +50,12 @@ class ParentController extends Controller {
     }
     async remove(req, res) {
         try {
-            const parentModel = new ParentModel();
-            const rs = await parentModel.del(req.params.id);
+            const studyResultModel = new StudyResultModel();
+            const rs = await studyResultModel.del(req.params.id);
             res.json(new Response(RESPONSE_STATUS.SUCCESS, rs))
         } catch (e) {
             res.json(new Response(RESPONSE_STATUS.ERROR, {}, { code: '400', message: 'Có lỗi xảy ra. Vui lòng liên hệ để được giải đáp.' }));
         }
     }
 }
-module.exports = ParentController;
+module.exports = StudyResultController;

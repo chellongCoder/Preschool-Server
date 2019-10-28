@@ -1,10 +1,10 @@
 {
   "development": {
     "username": "root",
-    "password": "toor",
+    "password": "longvip98",
     "database": "preSchool_app",
-    "host": "125.212.227.42",
-    "port": "3336",
+    "host": "localhost",
+    "port": "3306",
     "dialect": "mysql",
     "operatorsAliases": false
   },

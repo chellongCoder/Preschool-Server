@@ -6,5 +6,13 @@ module.exports = (sequelize, DataTypes) => {
     author_id: DataTypes.INTEGER,
     status_accept: DataTypes.INTEGER
   }, {});
+  moment.associate = function (models) {
+    moment.belongsToMany(models.image, {
+      through: models.image_moment,
+      as: 'image',
+      foreignKey: 'momentID',
+      otherKey: 'imageID'
+    })
+  }
   return moment;
 };

@@ -1,5 +1,5 @@
 const BaseRouter = require('./base_router');
-const { ApiCtrl, AuthCtrl, MomentCtrl, ParentCtrl, ImageCtrl, TeacherCtrl, StudentCtrl, ActivityCtrl, NotifyCtrl, ClassCtrl, SchoolCtrl, MealTypeCtrl, WeekPlanCtrl, AbsenseCtrl} = require('../controllers');
+const { ApiCtrl, AuthCtrl, MomentCtrl, ParentCtrl, ImageCtrl, TeacherCtrl, StudentCtrl, ActivityCtrl, NotifyCtrl, ClassCtrl, SchoolCtrl, MealTypeCtrl, WeekPlanCtrl, AbsenseCtrl, StudyResultCtrl, TuitionCtrl} = require('../controllers');
 const ApiVerify = require('../middleware/api_verify');
 
 class ApiRouter extends BaseRouter{
@@ -21,6 +21,8 @@ class ApiRouter extends BaseRouter{
         const mealTypeCtrl = new MealTypeCtrl();
         const weekPlanCtrl = new WeekPlanCtrl();
         const absenseCtrl = new AbsenseCtrl();
+        const studyResultCtrl = new StudyResultCtrl();
+        const tuitionCtrl = new TuitionCtrl();
         //Api Auth
         this.addRouter('POST', '/user/register', authCtrl.register.bind(authCtrl));
         this.addRouter('POST', '/user/login', authCtrl.login.bind(authCtrl));
@@ -30,7 +32,7 @@ class ApiRouter extends BaseRouter{
         //Basic Api
         this.addRouter('GET', '/user/me', apiCtrl.getInfo.bind(apiCtrl), ApiVerify.verifyAccesskey);
 
-        this.routerCtrl(momentCtrl, "moments");
+        this.routerCtrl(momentCtrl, "moment");
         this.routerCtrl(parentCtrl, "parent");
         this.routerCtrl(imageCtrl, "image");
         this.routerCtrl(teacherCtrl, "teacher");
@@ -42,6 +44,8 @@ class ApiRouter extends BaseRouter{
         this.routerCtrl(mealTypeCtrl, "mealType");
         this.routerCtrl(weekPlanCtrl, "weekPlan");
         this.routerCtrl(absenseCtrl, "absense");
+        this.routerCtrl(studyResultCtrl, "studyResult");
+        this.routerCtrl(tuitionCtrl, "tuition");
     }
 
     

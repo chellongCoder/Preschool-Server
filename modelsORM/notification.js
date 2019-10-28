@@ -1,9 +1,17 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const notification = sequelize.define('notification', {
+  const Notification = sequelize.define('notification', {
     title: DataTypes.STRING,
     author: DataTypes.INTEGER,
     content: DataTypes.STRING
   }, {});
-  return notification;
+  Notification.associate = function (models) {
+    Notification.belongsToMany(models.image, {
+      through: models.image_notification,
+      as: 'image',
+      foreignKey: 'notificationID',
+      otherKey: 'imageID'
+    })
+  }
+  return Notification;
 };

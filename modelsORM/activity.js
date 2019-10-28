@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const classroom = sequelize.define('activity', {
+  const Activity = sequelize.define('activity', {
     title: DataTypes.STRING,
     acti_time_from: DataTypes.DATE,
     acti_time_to: DataTypes.DATE,
@@ -9,5 +9,13 @@ module.exports = (sequelize, DataTypes) => {
     content: DataTypes.STRING,
     regis_status: DataTypes.INTEGER
   }, {});
-  return classroom;
+  Activity.associate = function (models) {
+    Activity.belongsToMany(models.image, {
+      through: models.image_activity,
+      as: 'image',
+      foreignKey: 'activityID',
+      otherKey: 'imageID'
+    })
+  }
+  return Activity;
 };

@@ -6,6 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     gender: DataTypes.INTEGER,
     birthday: DataTypes.DATEONLY,
     address: DataTypes.STRING,
+    weight: DataTypes.DECIMAL(10, 1),
+    height: DataTypes.DECIMAL(10, 1),
     parent_id: DataTypes.INTEGER,
     grade: DataTypes.INTEGER,
     class_id: DataTypes.INTEGER,
