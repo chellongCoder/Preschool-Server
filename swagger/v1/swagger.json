@@ -258,14 +258,6 @@
                         "type": "string"
                     },
                     {
-                        "name": "img",
-                        "in": "formData",
-                        "description": "Image id",
-                        "required": false,
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    {
                         "name": "likes",
                         "in": "formData",
                         "description": "like number",
