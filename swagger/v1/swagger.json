@@ -338,49 +338,39 @@
                 }]
             },
             "put": {
-                "description": "Thông tin cá nhân của tài khoản đăng nhập.",
+                "description": "cập nhật moment",
                 "operationId": "getmoment",
                 "produces": [
                     "application/json"
                 ],
                 "parameters": [
                     {
-                        "name": "content",
-                        "in": "formData",
-                        "description": "Nội dung của moment",
+                        "name": "id",
+                        "in": "path",
+                        "description": "id của moment",
                         "required": true,
-                        "type": "string"
+                        "type": "integer"
                     },
                     {
                         "name": "likes",
                         "in": "formData",
                         "description": "like number",
                         "required": false,
-                        "type": "integer",
-                        "format": "int32"
+                        "type": "integer"
                     },
                     {
                         "name": "author_id",
                         "in": "formData",
                         "description": "Teacher id",
                         "required": true,
-                        "type": "integer",
-                        "format": "int32"
+                        "type": "integer"
                     },
                     {
                         "name": "status_accept",
                         "in": "formData",
                         "description": "0 or 1",
                         "required": true,
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    {
-                        "name": "img_url",
-                        "in": "formData",
-                        "description": "Image url",
-                        "required": false,
-                        "type": "string"
+                        "type": "integer"
                     }
                 ],
                 "responses": {
@@ -588,6 +578,14 @@
                     "application/x-www-form-urlencoded"   
                 ],
                 "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "parent last name",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
                     {
                         "name": "last_name",
                         "in": "formData",

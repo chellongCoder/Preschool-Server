@@ -50,8 +50,7 @@ class ParentController extends Controller {
     async update(req, res) {
         try {
             const parentModel = new ParentModel();
-            console.log("request body", req.body, req.params);
-            const rs = await parentModel.update({...req.body, id: req.params})
+            const rs = await parentModel.update({...req.body, id: req.params.id})
             res.json(new Response(RESPONSE_STATUS.SUCCESS, rs))
         } catch (e) {
             console.log("error", e);

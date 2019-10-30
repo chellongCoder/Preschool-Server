@@ -38,11 +38,15 @@ class MomentController extends Controller {
         }
     }
     async update(req, res) {
+        console.log("asdasd")
         try {
+            console.log("param", req.params)
             const momentModel = new MomentModel();
-            const rs = await momentModel.update(req.body)
+            const rs = await momentModel.update({...req.body, id: req.params.id})
+            console.log('result', rs);
             res.json(new Response(RESPONSE_STATUS.SUCCESS, rs))
         } catch (e) {
+            // console.log("er", e);
             res.json(new Response(RESPONSE_STATUS.ERROR, {}, { code: '400', message: 'Có lỗi xảy ra. Vui lòng liên hệ để được giải đáp.' }));
         }
     }
