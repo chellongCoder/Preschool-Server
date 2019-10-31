@@ -343,6 +343,9 @@
                 "produces": [
                     "application/json"
                 ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"   
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -828,7 +831,7 @@
                     "application/json"
                 ],
                 "consumes": [
-                    "application/x-www-form-urlencoded"
+                    "application/x-www-form-urlencoded"   
                 ],
                 "parameters": [
                     {
