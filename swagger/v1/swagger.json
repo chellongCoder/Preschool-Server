@@ -352,6 +352,13 @@
                         "type": "integer"
                     },
                     {
+                        "name": "content",
+                        "in": "formData",
+                        "description": "Nội dung của moment",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
                         "name": "likes",
                         "in": "formData",
                         "description": "like number",
@@ -3493,6 +3500,43 @@
                     "name": "id",
                     "in": "path",
                     "description": "Tuition id",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int32"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Tuition"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            }
+        },
+        "/class/getClassByTeacher/{teacherID}": {
+            "get": {
+                "description": "Lấy Class theo id teacher",
+                "operationId": "findClassById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "teacherID",
+                    "in": "path",
+                    "description": "teacherID id",
                     "required": true,
                     "type": "integer",
                     "format": "int32"
