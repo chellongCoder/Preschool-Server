@@ -8,10 +8,10 @@ class DBConnector {
       client: 'mysql',
       version: '5.7',
       connection: {
-        host: '125.212.227.42',
-        port: 3336,
+        host: 'localhost',
+        port: 3306,
         user: 'root',
-        password: 'toor',
+        password: 'longvip98',
         database: 'preSchool_app'//ver == 1 ? 'braindb' : 'braindb-v2'
       }
     }

@@ -53,5 +53,16 @@ class ClassController extends Controller {
             res.json(new Response(RESPONSE_STATUS.ERROR, {}, { code: '400', message: 'Có lỗi xảy ra. Vui lòng liên hệ để được giải đáp.' }));
         }
     }
+
+    async getClassByTeacher(req, res) {
+        console.log("req", req.params);
+        try {
+            const classModel = new ClassModel();
+            const rs = await classModel.getClassByTeacher(req.params.id);
+            res.json(new Response(RESPONSE_STATUS.SUCCESS, rs))
+        } catch (e) {
+            res.json(new Response(RESPONSE_STATUS.ERROR, {}, { code: '400', message: 'Có lỗi xảy ra. Vui lòng liên hệ để được giải đáp.' }));
+        }
+    }
 }
 module.exports = ClassController;

@@ -14,7 +14,7 @@ const WeekPlanCtrl = require('./week_plan_ctrl')
 const AbsenseCtrl = require('./absense_ticket_ctrl')
 const StudyResultCtrl = require('./study_result_ctrl')
 const TuitionCtrl = require('./tuition_ctrl')
-
+const UploadCtrl = require('./upload_ctrl')
 module.exports = {
     ApiCtrl,
     AuthCtrl,
@@ -31,5 +31,6 @@ module.exports = {
     WeekPlanCtrl,
     AbsenseCtrl,
     StudyResultCtrl,
-    TuitionCtrl
+    TuitionCtrl,
+    UploadCtrl
 }

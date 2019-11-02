@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
     weight: DataTypes.DECIMAL(10, 1),
     height: DataTypes.DECIMAL(10, 1),
     parent_id: DataTypes.INTEGER,
-    grade: DataTypes.INTEGER,
     class_id: DataTypes.INTEGER,
     school_id: DataTypes.INTEGER,
     avatar: DataTypes.STRING,
@@ -18,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     student.belongsTo(models.class, {foreignKey: 'class_id', as: 'class'})
     student.belongsTo(models.parent, {foreignKey: 'parent_id', as: 'parent'})
+    student.belongsTo(models.school, {foreignKey: 'school_id', as: 'school'})
   };
   return student;
 };

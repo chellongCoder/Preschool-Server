@@ -115,7 +115,8 @@ class AuthController extends Controller {
                 console.log("user", user);
                 const accesskey = Token.sign({
                     'username': req.body['username'],
-                    ...user[0].dataValues
+                    ...user[0].dataValues,
+                    'role': rs[0]['role']
                 });
                 delete rs[0]['password'];
                 

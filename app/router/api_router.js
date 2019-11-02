@@ -1,5 +1,5 @@
 const BaseRouter = require('./base_router');
-const { ApiCtrl, AuthCtrl, MomentCtrl, ParentCtrl, ImageCtrl, TeacherCtrl, StudentCtrl, ActivityCtrl, NotifyCtrl, ClassCtrl, SchoolCtrl, MealTypeCtrl, WeekPlanCtrl, AbsenseCtrl, StudyResultCtrl, TuitionCtrl} = require('../controllers');
+const { ApiCtrl, AuthCtrl, MomentCtrl, ParentCtrl, ImageCtrl, TeacherCtrl, StudentCtrl, ActivityCtrl, NotifyCtrl, ClassCtrl, SchoolCtrl, MealTypeCtrl, WeekPlanCtrl, AbsenseCtrl, StudyResultCtrl, TuitionCtrl, UploadCtrl} = require('../controllers');
 const ApiVerify = require('../middleware/api_verify');
 
 class ApiRouter extends BaseRouter{
@@ -23,6 +23,7 @@ class ApiRouter extends BaseRouter{
         const absenseCtrl = new AbsenseCtrl();
         const studyResultCtrl = new StudyResultCtrl();
         const tuitionCtrl = new TuitionCtrl();
+        const uploadCtrl = new UploadCtrl();
         //Api Auth
         this.addRouter('POST', '/user/register', authCtrl.register.bind(authCtrl));
         this.addRouter('POST', '/user/login', authCtrl.login.bind(authCtrl));
@@ -46,6 +47,13 @@ class ApiRouter extends BaseRouter{
         this.routerCtrl(absenseCtrl, "absense");
         this.routerCtrl(studyResultCtrl, "studyResult");
         this.routerCtrl(tuitionCtrl, "tuition");
+
+        this.addRouter('GET', '/class/getClassByTeacher/:id', classCtrl.getClassByTeacher.bind(classCtrl), ApiVerify.verifyAccesskey);
+        this.addRouter('GET', '/student/getStudentByClass/:id', studentCtrl.getStudentByClass.bind(studentCtrl), ApiVerify.verifyAccesskey);
+        this.addRouter('GET', '/student/getStudentByParent/:id', studentCtrl.getStudentByParent.bind(studentCtrl), ApiVerify.verifyAccesskey);
+
+        this.addRouter('POST', '/uploadImage', uploadCtrl.uploadImage.bind(uploadCtrl));
+        
     }
 
     

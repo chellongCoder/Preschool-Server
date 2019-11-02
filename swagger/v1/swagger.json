@@ -3565,6 +3565,43 @@
                     "api_key": []
                 }]
             }
+        },
+        "/uploadImage": {
+            "post": {
+                "description": "upload file",
+                "operationId": "add tuition",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "in": "formData",
+                        "name": "upfile",
+                        "type": "file",
+                        "description": "The file to upload."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "$ref": "#/definitions/Tuition"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            }
         }
     },
     "definitions": {

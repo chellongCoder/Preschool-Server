@@ -112,7 +112,6 @@ const createParentStudent = async (number) => {
             email: faker.internet.email(),
             avatar: faker.image.imageUrl(),
             relationship: relationships[Math.floor(Math.random()*relationships.length)],
-            avatar: faker.image.imageUrl(),
             emergency_contact: "A.Hoàng - Khương Trung - 0868177610",
             userID: user.id,
         }
