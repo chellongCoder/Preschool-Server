@@ -52,7 +52,7 @@ class ApiRouter extends BaseRouter{
         this.addRouter('GET', '/student/getStudentByClass/:id', studentCtrl.getStudentByClass.bind(studentCtrl), ApiVerify.verifyAccesskey);
         this.addRouter('GET', '/student/getStudentByParent/:id', studentCtrl.getStudentByParent.bind(studentCtrl), ApiVerify.verifyAccesskey);
 
-        this.addRouter('POST', '/uploadImage', uploadCtrl.uploadImage.bind(uploadCtrl));
+        this.addRouter('POST', '/uploadImage', uploadCtrl.add.bind(uploadCtrl));
         
     }
 

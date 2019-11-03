@@ -15,9 +15,14 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   student.associate = function(models) {
     // associations can be defined here
-    student.belongsTo(models.class, {foreignKey: 'class_id', as: 'class'})
     student.belongsTo(models.parent, {foreignKey: 'parent_id', as: 'parent'})
     student.belongsTo(models.school, {foreignKey: 'school_id', as: 'school'})
+    student.belongsToMany(models.class, {
+      through: models.qrcode_checkin,
+      as: 'class',
+      foreignKey: 'studentID',
+      otherKey: 'classID'
+    })
   };
   return student;
 };

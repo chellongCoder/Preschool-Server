@@ -3582,6 +3582,12 @@
                         "name": "upfile",
                         "type": "file",
                         "description": "The file to upload."
+                    },
+                    {
+                        "in": "formData",
+                        "name": "upfile1",
+                        "type": "file",
+                        "description": "The file to upload."
                     }
                 ],
                 "responses": {

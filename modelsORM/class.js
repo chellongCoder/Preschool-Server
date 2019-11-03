@@ -17,9 +17,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'homeroom_teacher',
       as: 'homeroomTeacher'
     })
-    classroom.hasMany(models.student, {
-      foreignKey: 'class_id',
-      as: 'students'
+    classroom.belongsToMany(models.student, {
+      through: models.qrcode_checkin,
+      as: 'student',
+      foreignKey: 'classID',
+      otherKey: 'studentID'
     })
   };
   return classroom;
