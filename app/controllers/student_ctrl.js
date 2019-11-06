@@ -28,6 +28,7 @@ class StudentController extends Controller {
         }
     }
     async add(req, res) {
+
         try {
             const studentModel = new StudentModel();
             const rs = await studentModel.add(req.body);
@@ -81,5 +82,19 @@ class StudentController extends Controller {
             res.json(new Response(RESPONSE_STATUS.ERROR, {}, { code: '400', message: 'Có lỗi xảy ra. Vui lòng liên hệ để được giải đáp.' }));
         }
     }
+
+    async getStudentBYQRCodeCheckin(req, res) {
+        console.log("req.params", req.params);
+        try {   
+            const studentModel = new StudentModel();
+            const rs = await studentModel.getStudentBYQRCodeCheckin(req.params.date);
+            console.log("rs", rs);
+            res.json(new Response(RESPONSE_STATUS.SUCCESS, rs))
+        } catch (e) {
+            console.log(e);
+            
+            res.json(new Response(RESPONSE_STATUS.ERROR, {}, { code: '400', message: 'Có lỗi xảy ra. Vui lòng liên hệ để được giải đáp.' }));
+        }
+    } 
 }
 module.exports = StudentController;

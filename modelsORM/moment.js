@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'momentID',
       otherKey: 'imageID'
     })
+    moment.belongsTo(models.teacher, {
+      foreignKey: 'author_id',
+      as: 'teacher'
+    })
   }
   return moment;
 };

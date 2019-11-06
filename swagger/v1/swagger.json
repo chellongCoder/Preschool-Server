@@ -3608,6 +3608,87 @@
                     "api_key": []
                 }]
             }
+        },
+        "/qrCodeCheckin": {
+            "post": {
+                "description": "Thêm 1 checkin",
+                "operationId": "add checkin",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"   
+                ],
+                "parameters": [
+                    {
+                        "name": "studentID",
+                        "in": "formData",
+                        "description": "id tuition",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "classID",
+                        "in": "formData",
+                        "description": "id tuition",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "$ref": "#/definitions/QRCodeCheckin"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/QRCodeCheckin"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            }
+        },
+        "/student/getStudentBYQRCodeCheckin/{date}": {
+            "get": {
+                "description": "Lấy Student theo qr code checkin",
+                "operationId": "",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "date",
+                    "in": "path",
+                    "description": "date range",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Kết quả trả về",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Student"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "security": [{
+                    "api_key": []
+                }]
+            }
         }
     },
     "definitions": {
@@ -3909,6 +3990,22 @@
                 },
                 "isPaid": {
                     "type": "integer"
+                }
+            }
+        },
+        "QRCodeCheckin": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "studentID": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "classID": {
+                    "type": "integer",
+                    "format": "int64"
                 }
             }
         },

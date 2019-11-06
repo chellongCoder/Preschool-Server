@@ -22,6 +22,7 @@
     "knex": "^0.15.2",
     "md5": "^2.2.1",
     "moment": "^2.22.2",
+    "moment-timezone": "^0.5.27",
     "mysql": "^2.16.0",
     "mysql2": "^1.7.0",
     "nodemailer": "^4.6.8",

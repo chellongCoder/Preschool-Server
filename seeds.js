@@ -127,7 +127,7 @@ const createStudentForClass = async (number,schoolIDs, parentIDs, classIDs) => {
         const randStudent = {
             last_name: faker.name.lastName(),
             first_name: faker.name.firstName(),
-            gender: Math.round(Math.random()),
+            gender: Math.floor(Math.random() * 3) + 0,
             birthday: faker.date.past(),
             address: faker.address.country(),
             parent_id: parentIDs[i],
