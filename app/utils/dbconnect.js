@@ -24,5 +24,3 @@ class DBConnector {
 
 }
 module.exports = DBConnector;
-// const con = DBConnector.getInstance(2);
-// console.log(con);

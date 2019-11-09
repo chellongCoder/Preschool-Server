@@ -29,9 +29,10 @@ class MomentController extends Controller {
         }
     }
     async add(req, res) {
+        console.log("res", req.body);
         try {
             const momentModel = new MomentModel();
-            const rs = await momentModel.add(req.body);
+            const rs = await momentModel.addMoment(req.body);
             res.json(new Response(RESPONSE_STATUS.SUCCESS, rs))
         } catch (e) {
             res.json(new Response(RESPONSE_STATUS.ERROR, {}, { code: '400', message: 'Có lỗi xảy ra. Vui lòng liên hệ để được giải đáp.' }));

@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     avatar: DataTypes.STRING,
   }, {});
   student.associate = function(models) {
-    // associations can be defined here
     student.belongsTo(models.parent, {foreignKey: 'parent_id', as: 'parent'})
     student.belongsTo(models.school, {foreignKey: 'school_id', as: 'school'})
     student.belongsToMany(models.class, {

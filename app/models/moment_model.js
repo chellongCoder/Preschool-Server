@@ -60,5 +60,38 @@ class MomentModel extends BaseModel {
             console.log("error", error);
         }
     }
+
+    addMoment = async (data) => {
+        const moment = {
+            content: data.content,
+            likes: 0,
+            author_id: data.author_id,
+            status_accept: 1
+        }
+        const images = data.images;
+        const momentRs = await db.moment.create(moment);
+        console.log("moment", momentRs);
+        if(images) {
+            console.log("images")
+            for (let index = 0; index < images.length; index++) {
+                const element = {
+                    imageID: images[index].id,
+                    momentID: momentRs.id
+                };
+                const image_moment = await db.image_moment.create(element);
+                console.log("element", image_moment);
+                if(index === images.length-1) {
+                    const rs = await this.getMomentById(momentRs.id);
+                    return rs;
+                }
+            }
+
+        } else {
+            const rs = await this.getMomentById(momentRs.id);
+            console.log("msadasd", rs);
+            return rs;
+        }
+        // return 
+    }
 }
 module.exports = MomentModel
