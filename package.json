@@ -31,7 +31,7 @@
     "sequelize": "^5.19.6"
   },
   "devDependencies": {
-    "bcrypt": "^3.0.4",
+    "bcrypt": "^5.0.0",
     "swagger-ui-express": "^4.0.2"
   }
 }
