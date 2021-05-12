@@ -25,7 +25,7 @@
     "moment-timezone": "^0.5.27",
     "mysql": "^2.16.0",
     "mysql2": "^1.7.0",
-    "nodemailer": "^4.6.8",
+    "nodemailer": "^6.4.16",
     "nodemon": "^1.18.4",
     "sanitize-html": "^1.19.1",
     "sequelize": "^5.19.6"
